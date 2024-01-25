@@ -1,15 +1,17 @@
 //* Imports
 
+import { initDatabaseConnection } from "./plugins/mongo";
 import initREPL from "./plugins/repl/initREPL";
 
 async function main () {
     await Promise.all([
-        initREPL({
-            name: "ssh-tools"
-        })
+        initDatabaseConnection()  
     ]);
 
     //* Post Main
+    await initREPL({
+        name: "ssh-tools"
+    })
 }
 
 main();

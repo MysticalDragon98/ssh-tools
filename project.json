@@ -1,7 +1,8 @@
 {
     "type": "ts",
     "plugins": [
-        "repl"
+        "repl",
+        "mongo"
     ],
     "options": {}
 }
