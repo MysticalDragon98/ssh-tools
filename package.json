@@ -6,6 +6,7 @@
   "dependencies": {
     "@typegoose/typegoose": "^12.1.0",
     "@types/node": "^20.5.0",
+    "@types/ssh2": "^1.11.19",
     "dotenv": "^16.3.1",
     "minimist": "^1.2.8",
     "mongoose": "^8.1.1",

@@ -13,13 +13,17 @@ export default async function initREPL (options: IReplOptions) {
 
             const commandPath = resolve(__dirname, "../../lib/repl/commands", `${commandName}.repl-command.ts`);
             try {
-                const commandModule = await import(commandPath);
-                await commandModule.default(commandArgs, command);
+                var commandModule = await import(commandPath);
             } catch (error) {
                 throw new Error(`Command "${commandName}" not found.`);
             }
+            try {
+                const result = await commandModule.default(commandArgs, command);
 
-            callback(null, undefined);
+                callback(undefined, result);
+            } catch (exc) {
+                callback(exc, undefined);
+            }
         }
     });
 }
