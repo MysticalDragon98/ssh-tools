@@ -2,13 +2,14 @@ import IReplOptions from "./interfaces/repl-options";
 import REPL from "node:repl";
 import Minimist from "minimist";
 import { join, resolve } from "node:path";
+import parseArgs from "../../lib/modules/utils/parseArgs";
 //* Imports
 
 export default async function initREPL (options: IReplOptions) {
     const repl = REPL.start({
         prompt: `${options.name}> `,
         eval: async (cmd, context, filename, callback) => {
-            const command = await Minimist(cmd.trim().split(" "), {});
+            const command = await Minimist(parseArgs(cmd.trim()), {});
             const [ commandName, ...commandArgs ] = command._;
 
             const commandPath = resolve(__dirname, "../../lib/repl/commands", `${commandName}.repl-command.ts`);
